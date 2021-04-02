@@ -19,4 +19,8 @@ You may use this software in your own project so long as the following condition
 
 We reserve the right to update these conditions at any time, please check back periodically.
 
+### Licence of Valarium Launcher, based on Helios Launcher
+
+You are not allowed to use the modifications made on this project. You must use [the original source code](https://github.com/dscalzi/HeliosLauncher).
+
 ---
