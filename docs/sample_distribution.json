@@ -224,7 +224,7 @@
                     "type": "ForgeMod",
                     "artifact": {
                         "size": 17376788,
-                         "MD5": "370f4f1804c93f498f31af8dac509605",
+                        "MD5": "370f4f1804c93f498f31af8dac509605",
                         "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/prod-1.11.2/mods/WesterosBlocks.jar"
                     }
                 },
@@ -408,7 +408,7 @@
                     "artifact": {
                         "size": 1973,
                         "path": "options.txt",
-                        "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/files/options-1.11.2.txt" 
+                        "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/files/options-1.11.2.txt"
                     }
                 },
                 {
@@ -419,7 +419,7 @@
                         "size": 84,
                         "MD5": "71d99e229d7d2b8d2a6423e46832a4b8",
                         "path": "servers.dat",
-                        "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/prod-1.11.2/servers.dat" 
+                        "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/prod-1.11.2/servers.dat"
                     }
                 }
             ]
@@ -638,7 +638,7 @@
                     "type": "ForgeMod",
                     "artifact": {
                         "size": 17376788,
-                         "MD5": "370f4f1804c93f498f31af8dac509605",
+                        "MD5": "370f4f1804c93f498f31af8dac509605",
                         "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/test-1.11.2/mods/WesterosBlocks.jar"
                     }
                 },
@@ -822,7 +822,7 @@
                     "artifact": {
                         "size": 1973,
                         "path": "options.txt",
-                        "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/files/options-1.11.2.txt" 
+                        "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/files/options-1.11.2.txt"
                     }
                 },
                 {
@@ -833,7 +833,7 @@
                         "size": 87,
                         "MD5": "594de6063df993b5fde31c7290226ee4",
                         "path": "servers.dat",
-                        "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/test-1.11.2/servers.dat" 
+                        "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/test-1.11.2/servers.dat"
                     }
                 }
             ]
@@ -1072,7 +1072,7 @@
                     "type": "ForgeMod",
                     "artifact": {
                         "size": 17286330,
-                         "MD5": "e5c38ef42e9cc4b957122207dcf95f4f",
+                        "MD5": "e5c38ef42e9cc4b957122207dcf95f4f",
                         "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/test-1.12.2/mods/WesterosBlocks.jar"
                     }
                 },
@@ -1253,7 +1253,7 @@
                     "artifact": {
                         "size": 1973,
                         "path": "options.txt",
-                        "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/files/options-1.12.2.txt" 
+                        "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/files/options-1.12.2.txt"
                     }
                 },
                 {
@@ -1264,7 +1264,7 @@
                         "size": 87,
                         "MD5": "64dc1db90935997f07dfac422206f1de",
                         "path": "servers.dat",
-                        "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/test-1.12.2/servers.dat" 
+                        "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/test-1.12.2/servers.dat"
                     }
                 }
             ]
@@ -1300,7 +1300,7 @@
                             "name": "Minecraft Forge (universal jar)",
                             "type": "Library",
                             "artifact": {
-                                "size": 2343272 ,
+                                "size": 2343272,
                                 "MD5": "338c495d266da44ac1955caf91cc14c4",
                                 "url": ""
                             }
@@ -1555,7 +1555,6 @@
                                 "url": ""
                             }
                         }
-                        
                     ]
                 },
                 {
@@ -1564,7 +1563,7 @@
                     "type": "ForgeMod",
                     "artifact": {
                         "size": 27382,
-                         "MD5": "a1c0cfed77b2cb7b6699e59ba0252a50",
+                        "MD5": "a1c0cfed77b2cb7b6699e59ba0252a50",
                         "url": ""
                     }
                 },
@@ -1574,7 +1573,7 @@
                     "type": "ForgeMod",
                     "artifact": {
                         "size": 34914,
-                         "MD5": "b4dc10b9039518ce00845ca962e6a136",
+                        "MD5": "b4dc10b9039518ce00845ca962e6a136",
                         "url": ""
                     }
                 }
