@@ -6,7 +6,9 @@
 
 ---
 
-### Note on Third-Party Usage
+# Note on Third-Party Usage
+
+### Licence of Helios Launcher Project
 
 You may use this software in your own project so long as the following conditions are met.
 
