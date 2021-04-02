@@ -1,14 +1,14 @@
 {
-  "name": "helioslauncher",
-  "version": "1.8.0.1",
-  "productName": "Helios Launcher",
+  "name": "valariumlauncher",
+  "version": "1.8.0",
+  "productName": "Valarium Launcher",
   "description": "Modded Minecraft Launcher",
   "author": "Daniel Scalzi (https://github.com/dscalzi/)",
+  "contributors": [
+    "AnonymoCraft (Valarium Team)"
+  ],
   "license": "UNLICENSED",
-  "homepage": "https://github.com/dscalzi/HeliosLauncher",
-  "bugs": {
-    "url": "https://github.com/dscalzi/HeliosLauncher/issues"
-  },
+  "homepage": "https://github.com/Valarium/Launcher",
   "private": true,
   "main": "index.js",
   "scripts": {
@@ -48,6 +48,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dscalzi/HeliosLauncher.git"
+    "url": "git+https://github.com/Valarium/Launcher.git"
   }
 }
