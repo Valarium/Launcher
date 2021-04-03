@@ -41,7 +41,7 @@ builder.build({
             allowToChangeInstallationDirectory: true
         },
         mac: {
-            target: 'dmg',
+            target: "tar.gz",
             category: 'public.app-category.games'
         },
         linux: {
