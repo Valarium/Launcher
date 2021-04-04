@@ -83,6 +83,28 @@ ipcMain.on('distributionIndexDone', (event, res) => {
     event.sender.send('distributionIndexDone', res)
 })
 
+ipcMain.on('microsoftLoginStart', (event, res) => {
+    loginWindow = new BrowserWindow({
+        title: "Se connecter à votre compte Microsoft",
+        frame: true,
+        position: "center"
+    });
+    loginWindow.webContents.session.clearStorageData()
+    loginWindow.loadURL("https://login.live.com/oauth20_authorize.srf?client_id=00000000402b5328&response_type=code&scope=service%3A%3Auser.auth.xboxlive.com%3A%3AMBI_SSL&redirect_uri=https%3A%2F%2Flogin.live.com%2Foauth20_desktop.srf");
+    loginWindow.webContents.on("did-navigate", function (e, url, statusCode, statusText) {
+        if (url.startsWith("https://login.live.com/oauth20_desktop.srf")) {
+            try {
+                code = url.split("code=")[1].split("&")[0];
+            } catch (e) {
+                code = "cancel";
+            }
+            loginWindow.close()
+            event.reply("microsoftLoginFinished", code)
+        }
+    })
+})
+
+
 // Disable hardware acceleration.
 // https://electronjs.org/docs/tutorial/offscreen-rendering
 app.disableHardwareAcceleration()
