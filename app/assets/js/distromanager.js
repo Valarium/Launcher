@@ -523,6 +523,7 @@ exports.Types = {
 }
 
 let DEV_MODE = false
+let ALPHA_MODE = false
 
 const DISTRO_PATH = path.join(ConfigManager.getLauncherDirectory(), 'distribution.json')
 const DEV_PATH = path.join(ConfigManager.getLauncherDirectory(), 'dev_distribution.json')
@@ -601,6 +602,20 @@ exports.setDevMode = function (value) {
 exports.isDevMode = function () {
     return DEV_MODE
 }
+
+exports.setAlphaMode = function (value) {
+    if (value) {
+        logger.log('Alpha mode activated')
+    } else {
+        logger.log('Alpha mode disabled.')
+    }
+    ALPHA_MODE = value
+}
+
+exports.isAlphaMode = function () {
+    return ALPHA_MODE
+}
+
 
 /**
  * @returns {DistroIndex}

@@ -67,3 +67,12 @@ fs.remove(path.join(os.tmpdir(), ConfigManager.getTempNativeFolder()), (err) => 
         logger.log('Cleaned natives directory.')
     }
 })
+
+
+fetch("https://raw.githubusercontent.com/Valarium/LauncherConfig/main/alphaActivated", { method: "GET" }).then((res) => {
+    if (res.ok) { // res.status >= 200 && res.status < 300
+        DistroManager.setAlphaMode(true)
+    } else {
+        DistroManager.setAlphaMode(false)
+    }
+})

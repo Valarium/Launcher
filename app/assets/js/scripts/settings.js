@@ -261,6 +261,10 @@ function settingsNavItemListener(ele, fade = true) {
     let prevTab = selectedSettingsTab
     selectedSettingsTab = ele.getAttribute('rSc')
 
+    if (selectedSettingsTab === "settingsTabMods" && DistroManager.isAlphaMode()) {
+        selectedSettingsTab = "settingsAlphaModeEnabled"
+    }
+
     document.getElementById(prevTab).onscroll = null
     document.getElementById(selectedSettingsTab).onscroll = settingsTabScrollListener
 
@@ -287,6 +291,8 @@ function settingsNavItemListener(ele, fade = true) {
             })
         })
     }
+
+
 }
 
 const settingsNavDone = document.getElementById('settingsNavDone')
