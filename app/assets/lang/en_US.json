@@ -33,6 +33,9 @@
                 },
                 "unknown": {
                     "title": "Error During Login:<br>Unknown Error"
+                },
+                "userCancelled": {
+                    "title": "Error During Login:<br>Login Cancelled"
                 }
             },
             "login": "LOGIN",

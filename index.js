@@ -84,6 +84,7 @@ ipcMain.on('distributionIndexDone', (event, res) => {
 })
 
 ipcMain.on('microsoftLoginStart', (event, res) => {
+    signedIn = false
     loginWindow = new BrowserWindow({
         title: "Se connecter à votre compte Microsoft",
         frame: true,
@@ -95,12 +96,19 @@ ipcMain.on('microsoftLoginStart', (event, res) => {
         if (url.startsWith("https://login.live.com/oauth20_desktop.srf")) {
             try {
                 code = url.split("code=")[1].split("&")[0];
+                signedIn = true
             } catch (e) {
                 code = "cancel";
             }
             loginWindow.close()
             event.reply("microsoftLoginFinished", code)
+        } else {
+            signedIn = false
         }
+    })
+
+    loginWindow.on("close", (e) => {
+        if (!signedIn) event.reply("microsoftLoginFinished", "cancel")
     })
 })
 

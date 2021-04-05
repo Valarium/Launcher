@@ -212,6 +212,11 @@ function resolveError(err) {
                 title: Lang.queryJS('login.error.notPaid.title'),
                 desc: Lang.queryJS('login.error.notPaid.desc')
             }
+        } else if (err.message === 'UserCancelled') {
+            return {
+                title: Lang.queryJS('login.error.userCancelled.title'),
+                desc: ""
+            }
         } else {
             // Unknown error with request.
             return {

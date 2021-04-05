@@ -31,7 +31,7 @@ exports.addAccount = async function (username, password) {
     try {
         const session = await Mojang.authenticate(username, password, ConfigManager.getClientToken())
         if (session.selectedProfile != null) {
-            const ret = ConfigManager.addAuthAccount(session.selectedProfile.id, session.accessToken, username, session.selectedProfile.name)
+            const ret = ConfigManager.addAuthAccount(session.selectedProfile.id, session.accessToken, username, session.selectedProfile.name, "mojang", {})
             if (ConfigManager.getClientToken() == null) {
                 ConfigManager.setClientToken(session.clientToken)
             }
@@ -49,16 +49,12 @@ exports.addAccount = async function (username, password) {
 exports.addMicrosoftAccount = async function () {
     try {
         const session = await Microsoft.authenticate()
-        if (session.selectedProfile != null) {
-            const ret = ConfigManager.addAuthAccount(session.selectedProfile.id, session.accessToken, username, session.selectedProfile.name)
-            if (ConfigManager.getClientToken() == null) {
-                ConfigManager.setClientToken(session.clientToken)
-            }
-            ConfigManager.save()
-            return ret
-        } else {
-            throw new Error('NotPaidAccount')
+        const ret = ConfigManager.addAuthAccount(session.uuid, session.access_token, session.username, session.username, "microsoft", { refresh_date: session.refresh_date })
+        if (ConfigManager.getClientToken() == null) {
+            ConfigManager.setClientToken(session.clientToken)
         }
+        ConfigManager.save()
+        return ret
 
     } catch (err) {
         return Promise.reject(err)
@@ -96,10 +92,21 @@ exports.removeAccount = async function (uuid) {
  */
 exports.validateSelected = async function () {
     const current = ConfigManager.getSelectedAccount()
-    const isValid = await Mojang.validate(current.accessToken, ConfigManager.getClientToken())
+    if (current.provider === "mojang") {
+        const isValid = await Mojang.validate(current.accessToken, ConfigManager.getClientToken())
+    } else if (current.provider === "microsoft") {
+        const isValid = true
+    }
+
     if (!isValid) {
         try {
-            const session = await Mojang.refresh(current.accessToken, ConfigManager.getClientToken())
+            if (current.provider === "mojang") {
+                const session = await Mojang.refresh(current.accessToken, ConfigManager.getClientToken())
+            } else if (current.provider === "microsoft") {
+                const session = await Microsoft.refresh(current.uuid, refresh_date, ConfigManager.getClientToken())
+            } else {
+                return false
+            }
             ConfigManager.updateAuthAccount(current.uuid, session.accessToken)
             ConfigManager.save()
         } catch (err) {

@@ -28,11 +28,14 @@
                     "desc": "Le serveur d'authentification de Mojang est actuellement hors ligne ou inaccessible. Veuillez patienter un peu et réessayer. Vous pouvez vérifier le statut du serveur sur <a href=\"https://help.mojang.com/\">le portail d'aide de Mojang</a>."
                 },
                 "notPaid": {
-                    "title": "Erreur durant la connexion:<br>Jeu non possédé",
+                    "title": "Erreur durant la connexion :<br>Jeu non possédé",
                     "desc": "Le compte avec lequel vous essayez de vous connecter n'a pas acheté Minecraft.<br>Vous pouvez l'acheter sur <a href=\"https://minecraft.net/\">Minecraft.net</a>"
                 },
                 "unknown": {
-                    "title": "Erreur durant la connexion:<br>Erreur inconnue"
+                    "title": "Erreur durant la connexion :<br>Erreur inconnue"
+                },
+                "userCancelled": {
+                    "title": "Erreur durant la connexion :<br>Connexion annulée"
                 }
             },
             "login": "CONNEXION",

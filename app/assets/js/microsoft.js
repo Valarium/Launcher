@@ -16,7 +16,7 @@ exports.authenticate = async function authenticate(popup) {
     });
 
     if (code == "cancel") {
-        return { cancel: true };
+        throw new Error("UserCancelled")
     }
 
     // Get tokens
@@ -86,7 +86,6 @@ exports.authenticate = async function authenticate(popup) {
 
     if (!hasGame.items.find(i => i.name == "product_minecraft" || i.name == "game_minecraft")) {
         throw new Error('NotPaidAccount')
-        return { cancel: true };
     }
 
     //Get the profile
@@ -97,24 +96,20 @@ exports.authenticate = async function authenticate(popup) {
         }
     }).then(res => res.json());
 
-    /*this.db.add(profile.id, profile.name, profile.id, mcLogin.access_token, "microsoft", oauth2.refresh_token, refresh_date);
-    this.loading.classList.toggle("show");
-    return { username: profile.name, uuid: profile.id, email: profile.id };*/
+    return { username: profile.name, uuid: profile.id, email: profile.id, access_token: mcLogin.access_token, clientToken: oauth2.refresh_token, refresh_date: refresh_date };
 }
 
-exports.refresh = async function refresh(uuid) {
-    let acc = await this.db.get(uuid);
+exports.refresh = async function refresh(uuid, refresh_date, refresh_token) {
 
-    if (new Date().getTime() < acc.refresh_date) {
+    if (new Date().getTime() < refresh_date) {
         let profile = await fetch("https://api.minecraftservices.com/minecraft/profile", {
             method: "GET",
             headers: {
-                'Authorization': `Bearer ${acc.token}`
+                'Authorization': `Bearer ${refresh_token}`
             }
         }).then(res => res.json());
 
-        this.db.update(uuid, { username: profile.name, email: profile.id });
-        return { username: profile.name, uuid: profile.id, email: profile.id };
+        return { username: profile.name, uuid: profile.id, email: profile.id, access_token: mcLogin.access_token, clientToken: refresh_token, refresh_date: refresh_date };
     }
 
     let oauth2 = await fetch("https://login.live.com/oauth20_token.srf", {
@@ -122,10 +117,10 @@ exports.refresh = async function refresh(uuid) {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: `grant_type=refresh_token&client_id=00000000402b5328&scope=service::user.auth.xboxlive.com::MBI_SSL&refresh_token=${acc.refresh_token}`
+        body: `grant_type=refresh_token&client_id=00000000402b5328&scope=service::user.auth.xboxlive.com::MBI_SSL&refresh_token=${refresh_token}`
     }).then(res => res.json());
 
-    let refresh_date = new Date().getTime() + oauth2.expires_in * 1000;
+    let new_refresh_date = new Date().getTime() + oauth2.expires_in * 1000;
 
     let xbl = await fetch("https://user.auth.xboxlive.com/user/authenticate", {
         method: "POST",
@@ -180,6 +175,5 @@ exports.refresh = async function refresh(uuid) {
         }
     }).then(res => res.json());
 
-    this.db.update(uuid, { username: profile.name, email: profile.id, token: mcLogin.access_token, refresh_token: oauth2.refresh_token, refresh_date });
-    return { username: profile.name, uuid: profile.id, email: profile.id };
+    return { username: profile.name, uuid: profile.id, email: profile.id, access_token: mcLogin.access_token, clientToken: oauth2.refresh_token, refresh_date: new_refresh_date };
 }
