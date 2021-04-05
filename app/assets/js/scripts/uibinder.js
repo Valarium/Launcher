@@ -109,9 +109,9 @@ function showFatalStartupError() {
         $('#loadingContainer').fadeOut(250, () => {
             document.getElementById('overlayContainer').style.background = 'none'
             setOverlayContent(
-                'Fatal Error: Unable to Load Distribution Index',
-                'A connection could not be established to our servers to download the distribution index. No local copies were available to load. <br><br>The distribution index is an essential file which provides the latest server information. The launcher is unable to start without it. Ensure you are connected to the internet and relaunch the application.',
-                'Close'
+                'Erreur fatale : Impossible de charger l\'index de distribution',
+                "Une connexion n'a pu être établie avec nos serveurs pour télécharger l'index de distribution. Aucune copie locale n'était disponible pour le chargement. <br><br>L'index de distribution est un fichier essentiel qui fournit les dernières informations sur les serveurs. Le launcher est incapable de démarrer sans lui. Assurez-vous que vous êtes connecté à Internet et relancez l'application.",
+                'Fermer'
             )
             setOverlayHandler(() => {
                 const window = remote.getCurrentWindow()
@@ -323,10 +323,10 @@ async function validateSelectedAccount() {
             ConfigManager.save()
             const accLen = Object.keys(ConfigManager.getAuthAccounts()).length
             setOverlayContent(
-                'Failed to Refresh Login',
-                `We were unable to refresh the login for <strong>${selectedAcc.displayName}</strong>. Please ${accLen > 0 ? 'select another account or ' : ''} login again.`,
-                'Login',
-                'Select Another Account'
+                'Échec du rafraichissement du compte',
+                `Nous n'avons pas pu rafraîchir la connexion pour <strong>${selectedAcc.displayName}</strong>. Veuillez ${accLen > 0 ? 'sélectionner un autre compte ou ' : ''}vous connecter à nouveau.`,
+                'Se connecter',
+                'Choisir un autre compte'
             )
             setOverlayHandler(() => {
                 document.getElementById('loginUsername').value = selectedAcc.username

@@ -43,21 +43,21 @@ if (!isDev) {
         switch (arg) {
             case 'checking-for-update':
                 loggerAutoUpdater.log('Checking for update..')
-                settingsUpdateButtonStatus('Checking for Updates..', true)
+                settingsUpdateButtonStatus('Vérification des mises à jour..', true)
                 break
             case 'update-available':
-                loggerAutoUpdaterSuccess.log('New update available', info.version)
+                loggerAutoUpdaterSuccess.log('Mise à jour disponible', info.version)
 
                 if (process.platform === 'darwin') {
-                    info.darwindownload = `https://github.com/Valarium/Launcher/releases/download/v${info.version}/valariumlauncher-setup-${info.version}.dmg`
+                    info.darwindownload = `https://github.com/Valarium/Launcher/releases/download/v${info.version}/valariumlauncher-setup-${info.version}.tar.gz`
                     showUpdateUI(info)
                 }
 
                 populateSettingsUpdateInformation(info)
                 break
             case 'update-downloaded':
-                loggerAutoUpdaterSuccess.log('Update ' + info.version + ' ready to be installed.')
-                settingsUpdateButtonStatus('Install Now', false, () => {
+                loggerAutoUpdaterSuccess.log('Mise à jour ' + info.version + ' prête à être installée.')
+                settingsUpdateButtonStatus('Installer maintenant', false, () => {
                     if (!isDev) {
                         ipcRenderer.send('autoUpdateAction', 'installUpdateNow')
                     }
@@ -66,7 +66,7 @@ if (!isDev) {
                 break
             case 'update-not-available':
                 loggerAutoUpdater.log('No new update found.')
-                settingsUpdateButtonStatus('Check for Updates')
+                settingsUpdateButtonStatus('Vérifier les mises à jour')
                 break
             case 'ready':
                 updateCheckListener = setInterval(() => {
