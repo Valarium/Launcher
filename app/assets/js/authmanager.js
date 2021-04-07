@@ -92,10 +92,9 @@ exports.removeAccount = async function (uuid) {
  */
 exports.validateSelected = async function () {
     const current = ConfigManager.getSelectedAccount()
+    const isValid = true
     if (current.provider === "mojang") {
-        const isValid = await Mojang.validate(current.accessToken, ConfigManager.getClientToken())
-    } else if (current.provider === "microsoft") {
-        const isValid = true
+        isValid = await Mojang.validate(current.accessToken, ConfigManager.getClientToken())
     }
 
     if (!isValid) {
