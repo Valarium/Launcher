@@ -76,3 +76,5 @@ fetch("https://raw.githubusercontent.com/Valarium/LauncherConfig/main/alphaActiv
         DistroManager.setAlphaMode(false)
     }
 })
+
+validateSelectedAccount()

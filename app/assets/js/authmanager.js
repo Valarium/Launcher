@@ -92,7 +92,7 @@ exports.removeAccount = async function (uuid) {
  */
 exports.validateSelected = async function () {
     const current = ConfigManager.getSelectedAccount()
-    const isValid = true
+    let isValid = true
     if (current.provider === "mojang") {
         isValid = await Mojang.validate(current.accessToken, ConfigManager.getClientToken())
     }
