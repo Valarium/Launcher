@@ -31,7 +31,7 @@ exports.addAccount = async function (username, password) {
     try {
         const session = await Mojang.authenticate(username, password, ConfigManager.getClientToken())
         if (session.selectedProfile != null) {
-            const ret = ConfigManager.addAuthAccount(session.selectedProfile.id, session.accessToken, username, session.selectedProfile.name, "mojang", {})
+            const ret = ConfigManager.addAuthAccount(session.selectedProfile.id, session.accessToken, session.clientToken, username, session.selectedProfile.name, "mojang", {})
             if (ConfigManager.getClientToken() == null) {
                 ConfigManager.setClientToken(session.clientToken)
             }
@@ -49,7 +49,7 @@ exports.addAccount = async function (username, password) {
 exports.addMicrosoftAccount = async function () {
     try {
         const session = await Microsoft.authenticate()
-        const ret = ConfigManager.addAuthAccount(session.uuid, session.access_token, session.username, session.username, "microsoft", { refresh_date: session.refresh_date })
+        const ret = ConfigManager.addAuthAccount(session.uuid, session.access_token, session.clientToken, session.username, session.username, "microsoft", { refresh_date: session.refresh_date })
         if (ConfigManager.getClientToken() == null) {
             ConfigManager.setClientToken(session.clientToken)
         }
@@ -94,15 +94,15 @@ exports.validateSelected = async function () {
     const current = ConfigManager.getSelectedAccount()
     let isValid = true
     if (current.provider === "mojang") {
-        isValid = await Mojang.validate(current.accessToken, ConfigManager.getClientToken())
+        isValid = await Mojang.validate(current.accessToken, current.clientToken)
     }
 
     if (!isValid) {
         try {
             if (current.provider === "mojang") {
-                const session = await Mojang.refresh(current.accessToken, ConfigManager.getClientToken())
+                const session = await Mojang.refresh(current.accessToken, current.clientToken)
             } else if (current.provider === "microsoft") {
-                const session = await Microsoft.refresh(current.uuid, refresh_date, ConfigManager.getClientToken())
+                const session = await Microsoft.refresh(current.uuid, refresh_date, current.clientToken)
             } else {
                 return false
             }
