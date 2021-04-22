@@ -55,7 +55,6 @@ exports.addMicrosoftAccount = async function () {
         }
         ConfigManager.save()
         return ret
-
     } catch (err) {
         return Promise.reject(err)
     }
